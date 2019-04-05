@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TechnoRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TechDomainRepository")
  */
-class Techno
+class TechDomain
 {
     /**
      * @ORM\Id()
@@ -20,11 +20,6 @@ class Techno
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TechDomain", inversedBy="techno")
-     */
-    private $domain;
 
     public function getId(): ?int
     {
@@ -39,18 +34,6 @@ class Techno
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDomain(): ?string
-    {
-        return $this->domain;
-    }
-
-    public function setDomain(string $domain): self
-    {
-        $this->domain = $domain;
 
         return $this;
     }

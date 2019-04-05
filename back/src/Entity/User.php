@@ -39,10 +39,20 @@ class User extends BaseUser
     private $userType;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Adress", mappedBy="id")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Adress", inversedBy="user")
      */
     private $adress;
+    
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Poste")
+     */
+    private $poste;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthDate;
 
     public function getId(): ?int
     {
@@ -73,12 +83,12 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getUserType(): ?int
+    public function getUserType(): UserType
     {
         return $this->userType;
     }
 
-    public function setUserType(int $userType): self
+    public function setUserType(UserType $userType): self
     {
         $this->userType = $userType;
 
@@ -105,6 +115,30 @@ class User extends BaseUser
     public function setGender(string $gender)
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getPoste()
+    {
+        return $this->poste;
+    }
+
+    public function setPoste(string $poste)
+    {
+        $this->poste = $poste;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?string
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(string $birthDate): self
+    {
+        $this->birthDate = $birthDate;
 
         return $this;
     }

@@ -51,12 +51,18 @@ class UserRepository extends ServiceEntityRepository
     public function transform(User $user)
     {
         return [
-            'id'    => (int) $user->getId(),
+            // 'id'    => (int) $user->getId(),
+            'usertype' => (string) $user->getUserType()->getName(),
             'lastname' => (string) $user->getLastName(),
             'firstname' => (string) $user->getFirstName(),
-            'birthdate' => (string) $user->getBirthDate(),
-            'username' => (string) $user->getUsername(),
-            'email' => (string) $user->email(),
+            'gender' => (string) $user->getGender(),
+            'poste' => (string) $user->getPoste()->getName(),
+            // 'birthdate' => (string) $user->getBirthDate(),
+            // 'username' => (string) $user->getUsername(),
+            // 'email' => (string) $user->getEmail(),
+            // 'enabled' => (bool) $user->isEnabled(),
+            // 'lastlogin' => (string) $user->getLastLogin(),
+            // 'roles' => (array) $user->getRoles(),
         ];
     }
 

@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 
 class UserController extends ApiController
 {
@@ -28,26 +30,8 @@ class UserController extends ApiController
     {
         $request = $this->transformJsonBody($request);
 
-        if (! $request) {
-            return $this->respondValidationError('Please provide a valid request!');
-        }
-
-        // validate the username and someother things
-        if (! $request->get('username')) {
-            return $this->respondValidationError('Please provide a username!');
-        }
-        if (! $request->get('lastName')) {
-            return $this->respondValidationError('Please provide a lastName!');
-        }
-        if (! $request->get('firstName')) {
-            return $this->respondValidationError('Please provide a firstName!');
-        }
-        if (! $request->get('birthDate')) {
-            return $this->respondValidationError('Please provide a birthDate!');
-        }
-        if (! $request->get('gender')) {
-            return $this->respondValidationError('Please provide a gender!');
-        }
+        dump($_POST);
+        dd($request);
 
         // persist the new user
         $user = new User;
@@ -56,7 +40,7 @@ class UserController extends ApiController
         $user->setUsername($request->get('firstName'));
         $user->setUsername($request->get('birthDate'));
         $user->setUsername($request->get('gender'));
-        $user->setCount(0);
+        
         $em->persist($user);
         $em->flush();
 
