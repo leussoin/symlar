@@ -1,0 +1,73 @@
+<div class="row custom-row">
+    <div class= "col-sm-5 custom-container jumbotron">
+
+      <form class="form-horizontal" [formGroup]="form">
+          <fieldset>
+          <legend>Formulaire User Form</legend>
+
+              <!--- user Block --->
+              <div class="form-group">
+                <label for="inputName">name</label>
+                <input type="text"
+                  placeholder="Name"
+                  formControlName="name">
+              </div>
+              <div class="form-group">
+                  <label for="inputLastname">Last name</label>
+                  <input type="text"
+                    placeholder="Lastname"
+                    formControlName="lastname">
+                </div>
+
+                <!-- Adress Block -->
+                <div class="form-group">
+                    <label for="inputAdress">Adress</label>
+                    <input type="text"
+                      placeholder="Adress"
+                      formControlName="adress">
+                  </div>
+
+                <!-- Poste Block -->
+                <div class="form-group">
+                    <label for="inputPoste">Poste</label>
+                    <input type="text"
+                      placeholder="Poste"
+                      formControlName="poste">
+                  </div>
+
+                <!-- Techno Block -->
+                <div class="form-group">
+                    <label for="inputTechno">techno</label>
+                    <input type="text"
+                      placeholder="Techno"
+                      formControlName="techno">
+                  </div>
+
+                <!--- Select gender Block --->
+            <div class="row custom-row">
+                <div class= "col-sm-5 custom-container jumbotron">
+                        <fieldset>
+
+
+                            <!--- Gender Block -->
+                            <div class="form-group">
+                              <label for="select">Gender</label>
+                                  <select id="select"  formControlName="gender">
+                                    <option *ngFor = "let g of gender" [ngValue] = "g"> {{g}} </option>
+                                  </select>
+                              </div>
+                      </fieldset>
+                    </div>
+                  </div>
+
+             <!--- Buttons Block --->
+              <div class="form-group">
+                  <button type="reset" class="btn btn-default">Cancel</button>
+                  <button type="submit" class="btn btn-success" [disabled]="!form.valid">Submit</button>
+              </div>
+          </fieldset>
+      </form>
+    </div>
+  </div>
+
+ {{form.value | json}}

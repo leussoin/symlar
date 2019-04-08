@@ -1,0 +1,54 @@
+<div class="row custom-row">
+  <div class= "col-sm-5 custom-container jumbotron">
+
+    <form class="form-horizontal" [formGroup]="form">
+        <fieldset>
+        <legend>Formulaire SignUp</legend>
+
+            <!--- Email Block --->
+            <div class="form-group">
+              <label for="inputEmail">Email</label>
+              <input type="text"
+                placeholder="Email"
+                formControlName="email">
+            </div>
+            <!-- <p *ngIf="form.get('email')?.errors?.email">Ce champ est invalide</p> -->
+            <!--- Password Block --->
+          <div ngModelgroup="password">
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password"
+                id="inputPassword"
+                placeholder="Password"
+                formControlName="password">
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword" >Confirm Password</label>
+              <input type="password"
+                id="confirmPassword"
+                placeholder="Password"
+                formControlName="confirmPassword">
+            </div>
+          </div>
+
+
+            <!--- Terms and conditions Block --->
+             <div class="form-group checkbox">
+              <label>
+                <input type="checkbox"> Confirm that you've read the Terms and
+                Conditions
+              </label>
+            </div>
+
+           <!--- Buttons Block --->
+            <div class="form-group">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-success" [disabled]="!form.valid">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+  </div>
+</div>
+
+{{form.value | json}}

@@ -1,0 +1,35 @@
+
+<div>
+        <ul>
+
+
+                <table class="table table-bordered">
+
+                    <thead>
+                      <tr>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Poste</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Hierarchy</th>
+                        <th scope="col">Usertype</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let usr of users">
+                        <td>{{usr.lastname}}</td>
+                        <td>{{usr.firstname}}</td>
+                        <td>{{usr.poste}}</td>
+                        <td>{{usr.gender}}</td>
+                        <td>{{usr.hierarchy}}</td>
+                        <td>{{usr.hierarchy}}</td>
+                      </tr>
+                    </tbody>
+
+                  </table>
+
+          </ul>
+
+
+  </div>
+
