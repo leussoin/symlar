@@ -112,7 +112,20 @@ class ApiController extends AdminController
      */
     public function respondCreated($data = [])
     {
-        return $this->setStatusCode(201)->respond($data);
+        $response = new Response();
+        $date = new \DateTime();
+            
+        $response->setContent(json_encode([
+            'id' => uniqid(),
+            'time' => $date->format("Y-m-d"),
+            'data' => $data
+        ]));
+
+        // Allow all websites
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
+        // return $this->setStatusCode(201)->respond($data);
     }
 
     
