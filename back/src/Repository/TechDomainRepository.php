@@ -16,7 +16,7 @@ class TechDomainRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, TechDomainClass::class);
+        parent::__construct($registry, TechDomain::class);
     }
 
     // /**
