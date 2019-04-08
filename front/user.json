@@ -1,0 +1,10 @@
+[{"lastname":"lastname0","firstname":"firstname0","usertype":"userType0","gender":"f","poste":"poste0","hierarchy":0},
+    {"lastname":"lastname1","firstname":"firstname1","usertype":"userType1","gender":"h","poste":"poste1","hierarchy":0},
+    {"lastname":"lastname2","firstname":"firstname2","usertype":"userType2","gender":"f","poste":"poste2","hierarchy":0},
+    {"lastname":"lastname3","firstname":"firstname3","usertype":"userType3","gender":"h","poste":"poste3","hierarchy":1},
+    {"lastname":"lastname4","firstname":"firstname4","usertype":"userType4","gender":"f","poste":"poste4","hierarchy":1},
+    {"lastname":"lastname5","firstname":"firstname5","usertype":"userType5","gender":"h","poste":"poste5","hierarchy":1},
+    {"lastname":"lastname6","firstname":"firstname6","usertype":"userType6","gender":"f","poste":"poste6","hierarchy":2},
+    {"lastname":"lastname7","firstname":"firstname7","usertype":"userType7","gender":"h","poste":"poste7","hierarchy":2},
+    {"lastname":"lastname8","firstname":"firstname8","usertype":"userType8","gender":"f","poste":"poste8","hierarchy":2},
+    {"lastname":"lastname9","firstname":"firstname9","usertype":"userType9","gender":"h","poste":"poste9","hierarchy":3}]
