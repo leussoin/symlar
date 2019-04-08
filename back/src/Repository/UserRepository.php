@@ -52,11 +52,12 @@ class UserRepository extends ServiceEntityRepository
     {
         return [
             // 'id'    => (int) $user->getId(),
-            'usertype' => (string) $user->getUserType()->getName(),
             'lastname' => (string) $user->getLastName(),
             'firstname' => (string) $user->getFirstName(),
+            'usertype' => (string) $user->getUserType()->getName(),
             'gender' => (string) $user->getGender(),
             'poste' => (string) $user->getPoste()->getName(),
+            'hierarchy' => (int) $user->getPoste()->getHierarchy(),
             // 'birthdate' => (string) $user->getBirthDate(),
             // 'username' => (string) $user->getUsername(),
             // 'email' => (string) $user->getEmail(),

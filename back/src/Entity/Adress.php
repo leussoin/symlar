@@ -93,4 +93,8 @@ class Adress
     {
         return $this->getAdress().' '.$this->getCp().' '.$this->getCity();
     }
+
+    public function __toString(){
+        return $this->getFullAdress();
+    }
 }

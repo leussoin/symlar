@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\TechDomain;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,12 +44,12 @@ class Techno
         return $this;
     }
 
-    public function getDomain(): ?string
+    public function getDomain(): ?TechDomain
     {
         return $this->domain;
     }
 
-    public function setDomain(string $domain): self
+    public function setDomain(TechDomain $domain): self
     {
         $this->domain = $domain;
 

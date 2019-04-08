@@ -27,6 +27,15 @@ class AppFixtures extends Fixture
         for($i = 0 ; $i < 10 ; $i++){
             $poste = new Poste();
             $poste->setName('poste'.$i);
+            if($i < 3){
+                $poste->setHierarchy(0);
+            }else if($i < 6){
+                $poste->setHierarchy(1);
+            }else if($i < 9){
+                $poste->setHierarchy(2);
+            }else{
+                $poste->setHierarchy(3);
+            }
 
             $manager->persist($poste);
 
@@ -37,7 +46,7 @@ class AppFixtures extends Fixture
         
         for($i = 0 ; $i < 10 ; $i++){
             $userType = new UserType();
-            $userType->setName('poste'.$i);
+            $userType->setName('userType'.$i);
             if($i%2 == 1){
                 $userType->setExtends($userTypeList[$i-1]);
             }else{
@@ -83,7 +92,7 @@ class AppFixtures extends Fixture
         for($i = 0 ; $i < 10 ; $i++){
             $techno = new Techno();
             $techno->setName('techno'.$i);
-            $techno->setDomain($techDomainList[$i]->getId());
+            $techno->setDomain($techDomainList[$i]);
 
             $manager->persist($techno);
 
@@ -96,13 +105,15 @@ class AppFixtures extends Fixture
             $user = new User();
             $user->setUsername('user'.$i);
             $user->setUsernameCanonical('user'.$i);
-            $user->setMail('mail'.$i);
-            $user->setMailCanonical('mail'.$i);
+            $user->setEmail('mail'.$i);
+            $user->setEmailCanonical('mail'.$i);
             $user->setEnabled(1);
             $user->setFirstName('firstname'.$i);
             $user->setLastName('lastname'.$i);
             $user->setPassword('password'.$i);
-            $user->setRoles('a:1:{i:0;s:9:"ROLE_USER";}');
+            $user->setRoles(['a:1:{i:0;s:9:"ROLE_USER";}']);
+            $user->setPoste($posteList[$i]);
+            $user->setUserType($userTypeList[$i]);
             
             if($i%2 == 0){
                 $user->setGender('f');

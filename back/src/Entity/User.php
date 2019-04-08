@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Poste ;
+use App\Entity\Techno ;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -33,7 +35,7 @@ class User extends BaseUser
     private $gender;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserType")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserType")
      * @ORM\JoinColumn(nullable=false)
      */
     private $userType;
@@ -42,10 +44,15 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="App\Entity\Adress", inversedBy="user")
      */
     private $adress;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Techno", inversedBy="user")
+     */
+    private $techno;
     
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Poste")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Poste")
      */
     private $poste;
 
@@ -95,14 +102,14 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getAdress(): ?int
+    public function getAdress(): ?Adress
     {
         return $this->adress;
     }
 
-    public function setAdress(int $adress): self
+    public function setAdress(Adress $adress): self
     {
-        $this->adress .= $adress.'|';
+        $this->adress[] = $adress;
 
         return $this;
     }
@@ -124,21 +131,33 @@ class User extends BaseUser
         return $this->poste;
     }
 
-    public function setPoste(string $poste)
+    public function setPoste(Poste $poste)
     {
         $this->poste = $poste;
 
         return $this;
     }
 
-    public function getBirthDate(): ?string
+    public function getBirthDate()
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(string $birthDate): self
+    public function setBirthDate($birthDate): self
     {
         $this->birthDate = $birthDate;
+
+        return $this;
+    }
+    
+    public function getTechno(): ?Techno
+    {
+        return $this->techno;
+    }
+
+    public function setTechno(Techno $techno): self
+    {
+        $this->techno[] = $techno;
 
         return $this;
     }
