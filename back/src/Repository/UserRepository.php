@@ -78,4 +78,37 @@ class UserRepository extends ServiceEntityRepository
 
         return $usersArray;
     }
+
+    public function fullTransform(User $user)
+    {
+        // dump($user);
+        return [
+            'id'    => (int) $user->getId(),
+            'usertype' => (string) ($user->getUserType() !== null ? $user->getUserType()->getName() : null ),
+            'poste' => (string) ($user->getPoste() !== null ? $user->getPoste()->getName() : null ),
+            'hierarchy' => (int) ($user->getPoste() !== null ? $user->getPoste()->getHierarchy() : null),
+            'username' => (string) $user->getUsername(),
+            'email' => (string) $user->getEmail(),
+            'enabled' => (bool) $user->isEnabled(),
+            'roles' => (array) $user->getRoles(),
+            'firstname' => (string) $user->getFirstName(),
+            'lastname' => (string) $user->getLastName(),
+            'gender' => (string) $user->getGender(),
+            'birthdate' => (string) $user->getBirthDate(),
+            'adresslist' => (array) $user->getAdress(),
+        ];
+    }
+
+    public function fullTransformAll()
+    {
+        $users = $this->findAll();
+        $usersArray = [];
+
+        foreach ($users as $user) {
+            $usersArray[] = $this->fullTransform($user);
+        }
+// die();
+        return $usersArray;
+    }
+
 }

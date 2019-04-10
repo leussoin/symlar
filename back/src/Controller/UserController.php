@@ -19,7 +19,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 class UserController extends ApiController
 {
     /**
-     * @Route("/user", name="userList")
+     * @Route("/api/user", name="userList")
      */
     public function list(UserRepository $userRepository)
     {
@@ -29,7 +29,7 @@ class UserController extends ApiController
     }
     
     /**
-    * @Route("/user/add", methods="POST")
+    * @Route("/api/user/add", methods="POST")
     */
     public function create(Request $request, UserRepository $userRepository, EntityManagerInterface $em)
     {

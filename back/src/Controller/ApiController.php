@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AdminController

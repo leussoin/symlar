@@ -19,32 +19,25 @@ class AdressRepository extends ServiceEntityRepository
         parent::__construct($registry, Adress::class);
     }
 
-    // /**
-    //  * @return Adress[] Returns an array of Adress objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function transform(Adress $adress)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return [
+            'cp' => (int) $adress->getCp(),
+            'city' => (string) $adress->getCity(),
+            'adress' => (string) $adress->getAdress(),
+            'primary' => (bool) $adress->getIsPrimary(),
+        ];
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Adress
+    public function transformAll()
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $adress = $this->findAll();
+        $adressArray = [];
+
+        foreach ($adress as $adr) {
+            $adressArray[] = $this->transform($adr);
+        }
+
+        return $adressArray;
     }
-    */
 }

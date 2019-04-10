@@ -35,6 +35,11 @@ class Adress
      * @ORM\Column(type="boolean")
      */
     private $isPrimary;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="adress")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -73,6 +78,18 @@ class Adress
     public function setAdress(string $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getUser(): ?PersistentCollection
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user[] = $user;
 
         return $this;
     }

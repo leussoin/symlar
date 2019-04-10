@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Poste ;
 use App\Entity\Techno ;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -93,7 +94,7 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getUserType(): UserType
+    public function getUserType(): ?UserType
     {
         return $this->userType;
     }
@@ -105,7 +106,7 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getAdress(): ?Adress
+    public function getAdress(): ?PersistentCollection
     {
         return $this->adress;
     }

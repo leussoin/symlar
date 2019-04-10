@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserTypeController extends AbstractController
 {
     /**
-     * @Route("/user/type", name="user_type")
+     * @Route("/api/usertype", name="user_type")
      */
     public function index()
     {

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Techno;
+use App\Entity\TechDomain;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +20,23 @@ class TechnoRepository extends ServiceEntityRepository
         parent::__construct($registry, Techno::class);
     }
 
-    // /**
-    //  * @return Techno[] Returns an array of Techno objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function transform(Techno $techno)
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return [
+            'name' => (string) $techno->getName(),
+            'domain' => (string) $techno->getDomain()->getName(),
+        ];
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Techno
+    public function transformAll()
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $techno = $this->findAll();
+        $technoArray = [];
+
+        foreach ($techno as $tech) {
+            $technoArray[] = $this->transform($tech);
+        }
+
+        return $technoArray;
     }
-    */
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TechnoController extends AbstractController
 {
     /**
-     * @Route("/techno", name="techno")
+     * @Route("/api/techno", name="techno")
      */
     public function index()
     {

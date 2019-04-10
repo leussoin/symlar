@@ -19,32 +19,22 @@ class TechDomainRepository extends ServiceEntityRepository
         parent::__construct($registry, TechDomain::class);
     }
 
-    // /**
-    //  * @return Techno[] Returns an array of Techno objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function transform(TechDomain $techDomain)
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return [
+            'name' => (string) $techDomain->getName(),
+        ];
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Techno
+    public function transformAll()
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $techDomain = $this->findAll();
+        $techDomainArray = [];
+
+        foreach ($techDomain as $tchDom) {
+            $techDomainArray[] = $this->transform($tchDom);
+        }
+
+        return $techDomainArray;
     }
-    */
 }

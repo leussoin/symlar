@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserBackController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    th{ padding-right: 15px; }
+    td{ padding-right: 15px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>User list</h1>
+
+    
+    {# <table> #}
+        {# <th>Username</th><th>usertype</th><th>poste</th><th>hierarchy</th><th>email</th><th>enabled</th><th>roles</th><th>firstname</th><th>lastname</th><th>gender</th><th>birthdate</th><th>adress</th> #}
+        {% for user in userList %}
+            {# <tr> #}
+                {# <td>{{ user.username }}</td>
+                <td>{{ user.usertype }}</td>
+                <td>{{ user.poste }}</td>
+                <td>{{ user.hierarchy }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.enabled }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        {{ role }}
+                    {% endfor %}
+                </td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.birthdate }}</td>
+                <td>  #}
+                    <ul>
+                    {% for adr in user.adresslist %}
+                        <li>
+                            {{ dump(adr) }}
+                            {% if adr is defined and adr.adresse is defined %}
+                                {% if adr.user == user %}
+                                    {{ adr.adress }} {{ adr.cp }} {{ adr.city }} | adresse {{ (adr.primary == 1) ? 'principale' : 'secondaire' }}
+                                {% endif %}
+                            {% else %}
+                                Pas d'adresse enregistrée
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {# </td>
+                <td><a>Modifier</a>
+                <td><a>Supprimer</a>
+            </tr> #}
+        {% endfor %}
+    {# </table> #}
+</div>
+{% endblock %}

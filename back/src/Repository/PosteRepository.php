@@ -19,32 +19,23 @@ class PosteRepository extends ServiceEntityRepository
         parent::__construct($registry, Poste::class);
     }
 
-    // /**
-    //  * @return Poste[] Returns an array of Poste objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function transform(Poste $poste)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return [
+            'name' => (string) $poste->getName(),
+            'hierarchy' => (int) $poste->getHierarchy(),
+        ];
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Poste
+    public function transformAll()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $poste = $this->findAll();
+        $posteArray = [];
+
+        foreach ($poste as $pst) {
+            $posteArray[] = $this->transform($pst);
+        }
+
+        return $posteArray;
     }
-    */
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TechDomainController extends AbstractController
 {
     /**
-     * @Route("/tech/domain", name="tech_domain")
+     * @Route("/api/techdomain", name="tech_domain")
      */
     public function index()
     {

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PosteController extends AbstractController
 {
     /**
-     * @Route("/poste", name="poste")
+     * @Route("/api/poste", name="poste")
      */
     public function index()
     {
