@@ -1,0 +1,39 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block user_menu_dropdown %}
+    <li>
+        <a href="{{ _logout_path }}"><i class="fa fa-sign-out"></i> {{ 'user.signout'|trans(domain = 'EasyAdminBundle') }}</a>
+    </li>
+    <li>
+        <a href="{{ path('fos_user_change_password') }}"><i class="fa fa-lock"></i> {{ 'change.password'|trans(domain = 'messages') }}</a>
+    </li>
+{% endblock user_menu_dropdown %}
+
+{% block content %}
+    <div class="container center-block">
+        <img class="container center-block logo-home" src="{{ asset('img/logo-hueber.png') }}"/>
+    </div>
+    <div class="title">
+        <h4>Outils de gestion des Rendez-vous Clients</h4>
+    </div>
+
+    {#{% for label, messages in app.session.flashbag.all %}#}
+        {#<div class="alert alert-{{ label }} flash-notice " role="alert">#}
+            {#{{ message }}#}
+        {#</div>#}
+    {#{% endfor %}#}
+
+    {% for label, messages in app.session.flashbag.all %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+{% endblock %}

@@ -1,7 +1,20 @@
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: App\Entity\User
     from_email:
         address: "c-carreras@hotmail.fr"
         sender_name: "c-carreras@hotmail.fr"
+    resetting:
+        email:
+            from_email:
+                address: "c-carreras@hotmail.fr"
+                sender_name: "c-carreras@hotmail.fr" 
+    registration:
+        form:
+            type: FOS\UserBundle\Form\Type\RegistrationFormType
+            name: fos_user_registration_form
+            validation_groups: [Registration, Default]
+        confirmation:
+            enabled: true
+            template: '@FOSUser/Registration/email.txt.twig'

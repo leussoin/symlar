@@ -1,0 +1,137 @@
+{% extends '@EasyAdmin/default/list.html.twig' %}
+
+{% block main %}
+{% set _list_item_actions = easyadmin_get_actions_for_list_item(_entity_config.name) %}
+
+    <div class="action-list">
+        <table class="table table-striped header-fixed">
+            <thead>
+            {% block table_head %}
+                {{ parent() }}
+            {% endblock table_head %}
+            </thead>
+
+            <tbody>
+            {% block table_body %}
+                {{ parent() }}
+            {% endblock table_body %}
+            </tbody>
+        </table>
+    </div>
+
+    {% block paginator %}
+        {{ include(_entity_config.templates.paginator) }}
+    {% endblock paginator %}
+
+{% endblock %}
+
+
+{% block item_actions %}
+
+    {{ include('easy_admin/includes/_actions.html.twig', {
+        actions: _list_item_actions,
+        request_parameters: _request_parameters,
+        translation_domain: _entity_config.translation_domain,
+        trans_parameters: _trans_parameters,
+        item_id: _item_id
+    }, with_context = false) }}
+{% endblock item_actions %}
+
+{% block content_header %}
+    <div class="flex-title-and-btnAction">
+
+        {% block content_title_wrapper %}
+            <h1 class="title">{{ block('content_title') }}</h1>
+            {#{% if easyadmin_action_is_enabled_for_list_view('new', _entity_config.name) %}#}
+            {#{% set _action = easyadmin_get_action_for_list_view('new', _entity_config.name) %}#}
+            {#{% block new_action %}#}
+                {#<div class="button-action header container">#}
+                    {#<a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({ action: _action.name })) }}" target="{{ _action.target }}">#}
+                        {#{% if _action.icon %}<i class="fa fa-{{ _action.icon }}"></i>{% endif %}#}
+                        {#{{ _action.label is defined and not _action.label is empty ? _action.label|trans(_trans_parameters) }}#}
+                    {#</a>#}
+                {#</div>#}
+            {#{% endblock new_action %}#}
+            {#{% endif %}#}
+        {% endblock %}
+
+    </div>
+
+    <div class="row header-list">
+        <div class="container">
+            <div class="global-actions">
+                {% block global_actions %}
+                    {% if easyadmin_action_is_enabled_for_list_view('search', _entity_config.name) %}
+                        {% set _action = easyadmin_get_action_for_list_view('search', _entity_config.name) %}
+
+                        {% block search_action %}
+                            <div class="{{ _action.css_class|default('') }}">
+                                <form method="get" action="{{ path('easyadmin') }}">
+                                    {% block search_form %}
+
+                                        <div class="searchBarsGroup">
+                                        {% for key, search in app.request.get('searchCustom') %}
+                                            <div class="searchBsolo">
+                                            <label class="label-search" for="{{ key }}">{{ key|trans }}</label>
+                                            <select class="form-control" name="{{ key }}" id="{{ key }}">
+                                                <option value="">Tous</option>
+                                                {% for option in search %}
+                                                    <option value="{{ option.id }}" {% if app.request.query.get(key) == option.id %}selected="selected"{% endif %}>{{ option }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            {% if app.request.query.get('idEntityAction') %}
+                                                <input type="hidden" name="idEntityAction" value="{{ app.request.query.get('idEntityAction') }}">
+                                            {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                            <div class="searchBarClassic pull-right">
+                                                {{ parent() }}
+                                            </div>
+                                            <div class="btnActionNewList">
+                                            {% if easyadmin_action_is_enabled_for_list_view('new', _entity_config.name) %}
+                                                {% set _action = easyadmin_get_action_for_list_view('new', _entity_config.name) %}
+                                                {% block new_action %}
+                                                    <div class="button-action header container">
+                                                        <a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({ action: _action.name })) }}" target="{{ _action.target }}">
+                                                            {% if _action.icon %}<i class="fa fa-{{ _action.icon }}"></i>{% endif %}
+                                                            {{ _action.label is defined and not _action.label is empty ? _action.label|trans(_trans_parameters) }}
+                                                        </a>
+                                                    </div>
+                                                {% endblock new_action %}
+                                            {% endif %}
+                                            </div>
+                                        </div>
+
+                                    {% endblock %}
+                                </form>
+                            </div>
+                        {% endblock search_action %}
+                    {% endif %}
+
+                    {#{% if easyadmin_action_is_enabled_for_list_view('new', _entity_config.name) %}#}
+                        {#{% set _action = easyadmin_get_action_for_list_view('new', _entity_config.name) %}#}
+                        {#{% block new_action %}#}
+                            {#<div class="button-action">#}
+                                {#<a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({ action: _action.name })) }}" target="{{ _action.target }}">#}
+                                    {#{% if _action.icon %}<i class="fa fa-{{ _action.icon }}"></i>{% endif %}#}
+                                    {#{{ _action.label is defined and not _action.label is empty ? _action.label|trans(_trans_parameters) }}#}
+                                {#</a>#}
+                            {#</div>#}
+                        {#{% endblock new_action %}#}
+                    {#{% endif %}#}
+                {% endblock global_actions %}
+            </div>
+        </div>
+    </div>
+{% endblock content_header %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+{% endblock %}
+
+
+{% block body_javascript %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block user_menu_dropdown %}
+    <li>
+        <a href="{{ _logout_path }}"><i class="fa fa-sign-out"></i> {{ 'user.signout'|trans(domain = 'EasyAdminBundle') }}</a>
+    </li>
+    <li>
+        <a href="{{ path('fos_user_change_password') }}"><i class="fa fa-lock"></i> {{ 'change.password'|trans(domain = 'messages') }}</a>
+    </li>
+{% endblock user_menu_dropdown %}
+
+{% block content %}
+    {{ parent() }}
+{% endblock %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    {#<script type="text/javascript" src="{{ asset('js/daterangepicker.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('build/app.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends '@EasyAdmin/default/edit.html.twig' %}
+{% form_theme form with easyadmin_config('design.form_theme') %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+{% endblock %}
