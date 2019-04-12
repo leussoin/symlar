@@ -33,8 +33,8 @@ class UserController extends ApiController
     */
     public function create(Request $request, UserRepository $userRepository, EntityManagerInterface $em)
     {
-        $request = $this->transformJsonBody($request);
-
+        //$request = $this->transformJsonBody($request);
+return "ok" ;
         // persist the new user
         $user = new User;
         $user->setLastName($request->get('lastName'));

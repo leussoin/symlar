@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrgChartModule } from 'ng2-org-chart';
 import { OrgchartSocietyComponent } from './orgchart-society/orgchart-society.component';
 import { SharedJsonComponent } from './shared-json/shared-json.component';
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { SharedJsonComponent } from './shared-json/shared-json.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OrgChartModule
+    OrgChartModule,
+    Ng2SearchPipeModule
+    
 
   ],
   providers: [],

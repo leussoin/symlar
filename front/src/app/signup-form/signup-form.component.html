@@ -1,7 +1,7 @@
 <div class="row custom-row">
   <div class= "col-sm-5 custom-container jumbotron">
 
-    <form class="form-horizontal" [formGroup]="form">
+    <form class="form-horizontal" (submit)="addForm()" [formGroup]="form">
         <fieldset>
         <legend>Formulaire SignUp</legend>
 
@@ -43,7 +43,7 @@
 
            <!--- Buttons Block --->
             <div class="form-group">
-                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="reset" class="btn btn-primary">Cancel</button>
                 <button type="submit" class="btn btn-success" [disabled]="!form.valid">Submit</button>
             </div>
         </fieldset>
@@ -51,4 +51,4 @@
   </div>
 </div>
 
-{{form.value | json}}
+

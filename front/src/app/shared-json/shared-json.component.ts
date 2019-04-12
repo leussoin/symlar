@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedDataOrchartService } from '../shared-data-orchart.service';
+import { SharedDataOrchartService } from '../services/shared-data-orchart.service';
+import { map, filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-shared-json',
@@ -12,13 +14,15 @@ import { SharedDataOrchartService } from '../shared-data-orchart.service';
 
 export class SharedJsonComponent implements OnInit {
   public users: any[];
-
+  title = 'TEST';
+  searchTest;
   constructor(public SharedDataOrchart: SharedDataOrchartService) { }
 
   ngOnInit() {
     this.SharedDataOrchart.
                       getUsers().
                       subscribe((data: any) => this.users = data);
+
 
 }
 }
