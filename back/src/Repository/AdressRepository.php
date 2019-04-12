@@ -40,4 +40,17 @@ class AdressRepository extends ServiceEntityRepository
 
         return $adressArray;
     }
+
+    public static function filterByUserId($entityRepository, $id) 
+    {
+        $result = $entityRepository->createQueryBuilder('a')
+            ->orderBy('a.city', 'ASC')
+        ;
+
+        $result->where('a = :id')
+            ->setParameter(':id', $id);
+        // dd($result);
+
+        return $result;
+    }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TechDomainController extends AbstractController
+class TechDomainController extends EasyAdminController
 {
     /**
      * @Route("/api/techdomain", name="tech_domain")

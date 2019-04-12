@@ -5,3 +5,7 @@ label{
     font-style: bold;
     
 }
+
+input:required:before{
+    content: "*";
+}

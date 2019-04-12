@@ -22,10 +22,10 @@ class UserType
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserType", mappedBy="id")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\UserType", cascade={"persist", "remove"})
      */
     private $extends;
+
 
     public function getId(): ?int
     {
@@ -44,18 +44,21 @@ class UserType
         return $this;
     }
 
-    public function setExtends($id){
-        $this->extends = $id;
-        
-        return $this;
+    public function getExtends(): ?self
+    {
+        return $this->extends;
     }
 
-    public function getExtends(){
-        return $this->extends;
+    public function setExtends(?self $extends): self
+    {
+        $this->extends = $extends;
+
+        return $this;
     }
 
     public function __toString()
     {
         return $this->name;
     }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\TechDomain;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,11 +23,22 @@ class Techno
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TechDomain", inversedBy="techno")
+     * @ORM\ManyToOne(targetEntity="App\Entity\TechDomain", inversedBy="technos")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $domain;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="technos")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -54,5 +67,37 @@ class Techno
         $this->domain = $domain;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addTechno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeTechno($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->name.' / '.$this->getDomain()->getName();
     }
 }

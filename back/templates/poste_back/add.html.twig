@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserBackController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 3%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    th{ padding-right: 15px; }
+    td{ padding-right: 15px; }
+    label{margin-right: 15px; }
+    input[type=range]{ width: 285px; margin-bottom:15px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Add Poste</h1>
+    
+    {{ form_start(form, { 'attr' : { 'class': 'form-horizontal  new-form' } }) }}
+
+    {{ form_widget(form) }}
+
+    {{ form_row(form.submit) }}
+
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}
+
+{% block body_javascript %}
+
+    {{ parent() }}
+{% endblock %}

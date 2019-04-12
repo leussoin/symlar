@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class UserTypeBackController extends AbstractController
+class UserTypeBackController extends EasyAdminController
 {
     /**
      * @Route("/back/usertype", name="user_type_back")

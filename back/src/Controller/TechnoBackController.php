@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\TechnoRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TechnoBackController extends AbstractController
+class TechnoBackController extends EasyAdminController
 {
     /**
      * @Route("/back/techno", name="techno_back")

@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Entity\Poste ;
+use App\Entity\Adresse ;
 use App\Entity\Techno ;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -45,17 +48,6 @@ class User extends BaseUser
     private $userType;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Adress", inversedBy="user")
-     */
-    private $adress;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Techno", inversedBy="user")
-     */
-    private $techno;
-    
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Poste")
      */
     private $poste;
@@ -64,6 +56,22 @@ class User extends BaseUser
      * @ORM\Column(type="date", nullable=true)
      */
     private $birthDate;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Adress", mappedBy="user", cascade={"persist"})
+     */
+    private $adress;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Techno", inversedBy="users", cascade={"persist"})
+     */
+    private $technos;
+
+    public function __construct(){
+        $this->adress = new ArrayCollection();
+        
+        $this->technos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,18 +114,6 @@ class User extends BaseUser
         return $this;
     }
 
-    public function getAdress(): ?PersistentCollection
-    {
-        return $this->adress;
-    }
-
-    public function setAdress(Adress $adress): self
-    {
-        $this->adress[] = $adress;
-
-        return $this;
-    }
-
     public function getGender()
     {
         return $this->gender;
@@ -153,15 +149,57 @@ class User extends BaseUser
 
         return $this;
     }
-    
-    public function getTechno(): ?Techno
+
+    /**
+     * @return Collection|Adress[]
+     */
+    public function getAdress(): Collection
     {
-        return $this->techno;
+        return $this->adress;
     }
 
-    public function setTechno(Techno $techno): self
+    public function addAdress(Adress $adress): self
     {
-        $this->techno[] = $techno;
+        if (!$this->adress->contains($adress)) {
+            $this->adress[] = $adress;
+            $adress->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdress(Adress $adress): self
+    {
+        if ($this->adress->contains($adress)) {
+            $this->adress->removeElement($adress);
+            $adress->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Techno[]
+     */
+    public function getTechnos(): Collection
+    {
+        return $this->technos;
+    }
+
+    public function addTechno(Techno $techno): self
+    {
+        if (!$this->technos->contains($techno)) {
+            $this->technos[] = $techno;
+        }
+
+        return $this;
+    }
+
+    public function removeTechno(Techno $techno): self
+    {
+        if ($this->technos->contains($techno)) {
+            $this->technos->removeElement($techno);
+        }
 
         return $this;
     }

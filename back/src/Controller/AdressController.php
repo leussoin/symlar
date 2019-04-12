@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\AdressRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdressController extends AbstractController
+class AdressController extends EasyAdminController
 {
     /**
      * @Route("/adress", name="adress")

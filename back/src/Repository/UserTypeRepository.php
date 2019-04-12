@@ -18,4 +18,11 @@ class UserTypeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, UserType::class);
     }
+
+    public static function orderByName($entityRepository)
+    {
+        return $entityRepository->createQueryBuilder('t')
+            ->orderBy('t.name', 'ASC')
+        ;
+    }
 }

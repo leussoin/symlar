@@ -60,24 +60,6 @@ class AppFixtures extends Fixture
 
         $manager->flush();
 
-        for($i = 0 ; $i < 20 ; $i++){
-            $adress = new Adress();
-            $adress->setCp($i);
-            $adress->setAdress($i.' rue machin');
-            $adress->setCity('city'.$i);
-            if($i%2 == 0){
-                $adress->setIsPrimary(1);
-            }else{
-                $adress->setIsPrimary(0);
-            }
-
-            $manager->persist($adress);
-
-            array_push($adressList, $adress);
-        }
-
-        $manager->flush();
-
         for($i = 0 ; $i < 10 ; $i++){
             $techDomain = new TechDomain();
             $techDomain->setName('techDomain'.$i);
@@ -101,6 +83,24 @@ class AppFixtures extends Fixture
 
         $manager->flush();
 
+        for($i = 0 ; $i < 20 ; $i++){
+            $adress = new Adress();
+            $adress->setCp($i+1);
+            $adress->setAdress($i.' rue machin');
+            $adress->setCity('city'.$i);
+            if($i%2 == 0){
+                $adress->setIsPrimary(1);
+            }else{
+                $adress->setIsPrimary(0);
+            }
+
+            $manager->persist($adress);
+
+            array_push($adressList, $adress);
+        }
+
+        $manager->flush();
+        
         for($i = 0 ; $i < 10 ; $i++){
             $user = new User();
             $user->setUsername('user'.$i);
@@ -120,6 +120,9 @@ class AppFixtures extends Fixture
             }else{
                 $user->setGender('h');
             }
+
+            $user->addAdress($adressList[$i]);
+            $user->addAdress($adressList[$i+10]);
 
             $manager->persist($user);
 

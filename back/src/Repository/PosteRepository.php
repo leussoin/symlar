@@ -38,4 +38,11 @@ class PosteRepository extends ServiceEntityRepository
 
         return $posteArray;
     }
+    
+    public static function orderByName(PosteRepository $posteRepository)
+    {
+        return $posteRepository->createQueryBuilder('p')
+            ->orderBy('p.name', 'ASC')
+        ;
+    }
 }
