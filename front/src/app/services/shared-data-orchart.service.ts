@@ -15,6 +15,10 @@ export class SharedDataOrchartService {
                        .map(res => res);
   }
 
+  /*getUsers(){
+    return this.http.get('http://localhost:4201/api/user')
+                       .map(res => res);
+  } */
 }
 
 
