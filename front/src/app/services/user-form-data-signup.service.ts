@@ -15,7 +15,7 @@ export class UserFormDataSignupService{
 
   public getCreateUser(user){
             console.log(user);
-    return this.http.post(this.BASE_URL + 'user/add', user)
+    return this.http.post(this.BASE_URL + 'api/user/add', user)
                   .map(res => res);
 
   }

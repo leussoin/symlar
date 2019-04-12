@@ -18,7 +18,7 @@ export class PostDataSignupService {
 
   getSignup(data){
     console.log(data);
-    return this.http.post(this.BASE_URL + 'user/add', data)
+    return this.http.post(this.BASE_URL + 'api/user/add', data)
                   .map(res => res);
 
 

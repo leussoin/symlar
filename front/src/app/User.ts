@@ -13,7 +13,7 @@ export class User {
   poste: number;
   adress: any;
   newAdress: any;
-
+  userType: number;
 
   //Both the passwords are in a single object
   password: {

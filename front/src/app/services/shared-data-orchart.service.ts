@@ -6,19 +6,13 @@ import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedDataOrchartService {
+
+export class SharedDataOrchartService{
 
   constructor(public http: HttpClient) { }
 
   getUsers(){
-    return this.http.get('http://localhost:8000/user')
+    return this.http.get('http://localhost:8000/api/user')
                        .map(res => res);
   }
-
-  /*getUsers(){
-    return this.http.get('http://localhost:4201/api/user')
-                       .map(res => res);
-  } */
 }
-
-
