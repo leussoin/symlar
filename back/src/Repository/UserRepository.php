@@ -56,14 +56,13 @@ class UserRepository extends ServiceEntityRepository
             'firstname' => (string) $user->getFirstName(),
             'usertype' => (string) $user->getUserType()->getName(),
             'gender' => (string) $user->getGender(),
+            'birthDate' => (string) $user->getBirthDate()->format('d-m-Y'),
+            'username' => (string) $user->getUsername(),
+            'email' => (string) $user->getEmail(),
+            'enabled' => (bool) $user->isEnabled(),
+            //'adress' => (array) $user->getAdress(),   
             'poste' => (string) $user->getPoste()->getName(),
             'hierarchy' => (int) $user->getPoste()->getHierarchy(),
-            // 'birthdate' => (string) $user->getBirthDate(),
-            // 'username' => (string) $user->getUsername(),
-            // 'email' => (string) $user->getEmail(),
-            // 'enabled' => (bool) $user->isEnabled(),
-            // 'lastlogin' => (string) $user->getLastLogin(),
-            // 'roles' => (array) $user->getRoles(),
         ];
     }
 
