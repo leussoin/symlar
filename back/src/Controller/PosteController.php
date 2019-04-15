@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PosteController extends EasyAdminController
+class PosteController extends ApiController
 {
     /**
      * @Route("/api/poste", name="poste")
