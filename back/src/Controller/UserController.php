@@ -110,34 +110,6 @@ class UserController extends ApiController
         }
         // return $this->respondCreated($userRepository->transform($user));
 
-
-        /* {
-                "lastName": "Nom",
-                "firstName": "Prénom",
-                "username": "username",
-                "email": "mail@domain.target",
-                "password": "123456",
-                "gender": "f",
-                "birthDate": "date('Y-m-d')",
-
-                // Ca (Techno existantes) :
-                "technos": ["techno1->id", "techno2->id", "techno3->id"...]
-                // Ou bien ca (nouvelles techno) :
-                "technos": [["name": 'nomTech', "domain": "domainTech"]...]
-                
-                "userType": "userType->id",
-
-                "poste": "userType->id",
-
-                // Ca (adresse existante) :
-                "adressId": "adress->id"
-                // Ou bien ca (nouvelle adresse) :
-                "cp": "12345",
-                "adress": "45 rue Jean Mermoz",
-                "city": "Toulouse",
-                "isPrimaryAdress": "0" // ou bien 1
-            } */
-
         $em->persist($user);
         $em->flush();
 

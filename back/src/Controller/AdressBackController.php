@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\Adress;
 use App\Form\AdressFormType;
 use App\Repository\AdressRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
-use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
-use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 
 class AdressBackController extends EasyAdminController
 {
