@@ -14,7 +14,7 @@ class TechnoBackController extends EasyAdminController
     public function index(TechnoRepository $technoRepository)
     {
         $technoList = $technoRepository->transformAll();
-
+ 
         return $this->render('techno_back/index.html.twig', [
             'technoList' => $technoList,
         ]);
