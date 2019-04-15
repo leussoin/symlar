@@ -15,6 +15,7 @@ import { OrgchartSocietyComponent } from './orgchart-society/orgchart-society.co
 import { SharedJsonComponent } from './shared-json/shared-json.component';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DescendingArrayPipe } from './pipe/descending-array.pipe';
 
 
 
@@ -24,7 +25,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SignupFormComponent,
     UserFormComponent,
     OrgchartSocietyComponent,
-    SharedJsonComponent
+    SharedJsonComponent,
+    DescendingArrayPipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     OrgChartModule,
     Ng2SearchPipeModule
-    
+
 
   ],
   providers: [],

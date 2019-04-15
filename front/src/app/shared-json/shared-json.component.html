@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="search-hero">
-          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" 
+          <input class="form-control" type="text" name="search" (submit)="addCroissant()" (submit)="addDecroissant()" [(ngModel)]="searchTest" autocomplete="off"
           placeholder=" search">
         </div>
         <table class="table table-striped">
@@ -19,7 +19,7 @@
           </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let usr of users | filter:searchTest">
+              <tr *ngFor="let usr of users | filter:searchTest | descendingArray" >
                   <td>{{usr.lastname}}</td>
                   <td>{{usr.firstname}}</td>
                   <td>{{usr.poste}}</td>
@@ -28,6 +28,23 @@
                   <td>{{usr.hierarchy}}</td>
           </tr>
           </tbody>
+          &nbsp;
+          <hr>
+          <tbody>
+            <tr *ngFor="let usr of users | descendingArray" >
+                <td>{{usr.lastname}}</td>
+                <td>{{usr.firstname}}</td>
+                <td>{{usr.poste}}</td>
+                <td>{{usr.gender}}</td>
+                <td>{{usr.hierarchy}}</td>
+                <td>{{usr.hierarchy}}</td>
+        </tr>
+        </tbody>
         </table>
       </div>
+      <!--- Buttons Block --->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Ordre Croissant</button>
+        <button type="submit" class="btn btn-success">Ordre Décroissant</button>
+    </div>
     </div>
