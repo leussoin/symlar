@@ -111,6 +111,7 @@ class AppFixtures extends Fixture
             $user->setFirstName('firstname'.$i);
             $user->setLastName('lastname'.$i);
             $user->setPassword('password'.$i);
+            $user->setBirthDate(\DateTime::createFromFormat("d/m/Y", '01/10/1985'));
             $user->setRoles(['a:1:{i:0;s:9:"ROLE_USER";}']);
             $user->setPoste($posteList[$i]);
             $user->setUserType($userTypeList[$i]);

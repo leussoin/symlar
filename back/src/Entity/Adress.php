@@ -103,15 +103,6 @@ class Adress
         return $this;
     }
 
-    public function getFullAdress()
-    {
-        return $this->getAdress().' '.$this->getCp().' '.$this->getCity();
-    }
-
-    public function __toString(){
-        return $this->getFullAdress();
-    }
-
     /**
      * @return Collection|User[]
      */
@@ -136,5 +127,14 @@ class Adress
         }
 
         return $this;
+    }
+
+    public function getFullAdress()
+    {
+        return $this->getAdress().', '.$this->getCp().' '.$this->getCity();
+    }
+
+    public function __toString(){
+        return $this->getFullAdress();
     }
 }

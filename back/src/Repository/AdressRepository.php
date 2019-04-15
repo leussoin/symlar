@@ -72,4 +72,11 @@ class AdressRepository extends ServiceEntityRepository
 
         return $adressArray;
     }
+    
+    public static function orderByCity($posteRepository)
+    {
+        return $posteRepository->createQueryBuilder('a')
+            ->orderBy('a.city', 'ASC')
+        ;
+    }
 }

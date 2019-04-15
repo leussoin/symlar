@@ -69,6 +69,23 @@ class UserFormType extends AbstractType
 
                 },
             ])
+            ->add('adress', EntityType::class, [
+                'class' => Adress::class,
+                'placeholder' => 'Choisissez une adresse',
+                'multiple' => true,
+                'required' => true,
+                'query_builder' => function(EntityRepository $er) {
+                    return AdressRepository::orderByCity($er);
+
+                }
+            ])
+            ->add('newAdress', CollectionType::class, [
+                'entry_type' => AdressFormType::class,
+                'allow_add' => true,
+                // 'prototype' => true,
+                'entry_options' => ['label' => false],
+                'required' => false,
+            ])
         ;
         
         $builder->add('submit', SubmitType::class, [
@@ -89,7 +106,7 @@ class UserFormType extends AbstractType
 
                 for($i = 0 ; $i < count($adressList) ; $i++){
                     //set address Customer in place Rdv
-                    $adressList[$i]->setUser($user);
+                    $adressList[$i]->addUser($user);
                 }
             }
         );

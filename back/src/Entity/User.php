@@ -63,6 +63,12 @@ class User extends BaseUser
     private $adress;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $newAdress;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Techno", inversedBy="users", cascade={"persist"})
      */
     private $technos;
@@ -202,5 +208,17 @@ class User extends BaseUser
         }
 
         return $this;
+    }
+
+    public function setNewAdress(Adress $adress): self
+    {
+        $this->newAdress = $adress;
+
+        return $this;
+    }
+
+    public function getNewAdress(): ?self
+    {
+        return $this->newAdress;
     }
 }

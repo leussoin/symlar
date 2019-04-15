@@ -16,11 +16,73 @@
 
     {{ form_start(form, { 'attr' : { 'class': 'form-horizontal  new-form' } }) }}
 
+    {{ form_row(form.username) }}
+
     {{ form_widget(form) }}
+
+
+    <ul class="newAdress" data-prototype="{{ form_widget(form.newAdress.vars.prototype.cp)|e }}">
+    </ul>
 
     {# {{ form_row(form.submit) }} #}
 
+    {# Ajouter param pour pas afficher les trucs qu'on veux pas (ici on affiche tout avec le form_widget) #}
     {{ form_end(form) }}
 
 </div>
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script>
+        let $collectionHolder;
+
+        // setup an "add a newAdress" link
+        let $addNewAdrButton = $('<button type="button" class="add_adr_link">Add a new adress</button>');
+        let $newLinkLi = $('<li></li>').append($addNewAdrButton);
+
+        $(document).ready(function() {
+            // Get the ul that holds the collection of newAdress
+            $collectionHolder = $('ul.newAdress');
+
+            // add the "add a newAdress" anchor and li to the newAdress ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addNewAdrButton.on('click', function(e) {
+                // add a new newAdress form (see next code block)
+                addnewAdrForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addnewAdrForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your newAdresss field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a newAdress" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+    </script>
+
 {% endblock %}
