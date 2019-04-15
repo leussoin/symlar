@@ -53,4 +53,23 @@ class AdressRepository extends ServiceEntityRepository
 
         return $result;
     }
+
+    public static function getSpecific($entityManager, $data) 
+    {
+        $result = $entityManager->createQueryBuilder('a')
+            ->select('a')
+            ->from('App\Entity\Adress', 'a')
+            ->where('a.adress LIKE ?1 OR a.cp LIKE ?2 OR a.city LIKE ?3')
+            ->setParameters(array(1 => '%'.$data['adress'].'%', 2 => '%'.$data['cp'].'%', 3 => '%'.$data['city'].'%'))
+            ->getQuery()
+            ->getResult();
+
+            
+        $adressArray = [];
+        foreach ($result as $adress) {
+            $adressArray[] = self::transform($adress);
+        }
+
+        return $adressArray;
+    }
 }

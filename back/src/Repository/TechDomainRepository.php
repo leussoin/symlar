@@ -37,4 +37,11 @@ class TechDomainRepository extends ServiceEntityRepository
 
         return $techDomainArray;
     }
+    
+    public static function orderByName(TechDomainRepository $techDomainRepository)
+    {
+        return $techDomainRepository->createQueryBuilder('t')
+            ->orderBy('t.name', 'ASC')
+        ;
+    }
 }
