@@ -4,8 +4,8 @@ export class User {
 
   id: number;
   email: string;
-  lastname: string;
-  firstname: string;
+  lastName: string;
+  firstName: string;
   birthDate: number;
   username: string;
   technos: string;

@@ -21,9 +21,9 @@ export class UserFormComponent implements OnInit {
   createUser(){
       const createDataUser = this.form.value;
       this.user = new User();
-      this.user.lastname = createDataUser.lastname;
+      this.user.lastName = createDataUser.lastName;
       this.user.email = createDataUser.email;
-      this.user.firstname = createDataUser.firstname;
+      this.user.firstName = createDataUser.firstName;
       this.user.birthDate = createDataUser.birthDate;
       this.user.username = createDataUser.username;
       this.user.technos = createDataUser.technos;
@@ -44,8 +44,8 @@ export class UserFormComponent implements OnInit {
 
 
         this.form = this.fb.group({
-            firstname:['', Validators.required],
-            lastname:['', Validators.required],
+            firstName:['', Validators.required],
+            lastName:['', Validators.required],
             adress:['', Validators.required],
             poste:['', Validators.required],
             technos:['', Validators.required],
